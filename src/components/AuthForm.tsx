@@ -2,35 +2,27 @@
 import React from 'react';
 import Login from './Login';
 import Register from './Register';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import Button from 'react-bootstrap/Button'
 
-interface State {
-    isLoginForm: boolean;
-}
 
-class AuthForm extends React.Component<{}, State> {
+
+class AuthForm extends React.Component<{}> {
     constructor(props: {}) {
-        super(props);
-        this.state = {
-            isLoginForm: true,  // Login form is displayed by default
-        }
-
-        this.switchForm = this.switchForm.bind(this);
-    }
-
-    switchForm() {
-        this.setState(prevState => ({ isLoginForm: !prevState.isLoginForm }));
+        super(props);  
     }
 
     render() {
-        const form = this.state.isLoginForm ? <Login /> : <Register />;
-
         return (
-            <div>
-                <button onClick={this.switchForm}>
-                    {this.state.isLoginForm ? 'Register' : 'Login'}
-                </button>
-                {form}
-            </div>
+            <Tabs defaultActiveKey="login" id="uncontrolled-tab-example" className="mb-3">
+                <Tab eventKey="login" title="SingIn">
+                    <Login />
+                </Tab>
+                <Tab eventKey="register" title="Register">
+                    <Register />
+                </Tab>
+            </Tabs>
         );
     }
 }
